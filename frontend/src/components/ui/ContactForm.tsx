@@ -13,12 +13,38 @@ export function ContactForm() {
     setIsSubmitting(true);
     setStatus("idle");
 
-    // Mocking the API request for now. Will be connected to WordPress CF7 in Milestone 4.
-    setTimeout(() => {
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        console.error("Form error:", result.error);
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus("error");
+    } finally {
       setIsSubmitting(false);
-      setStatus("success");
-      (e.target as HTMLFormElement).reset();
-    }, 1500);
+    }
   };
 
   return (
