@@ -1,8 +1,9 @@
 # ==========================================
-# WordPress + Next.js Headless — .gitignore
+# .gitignore — iptv-nederland.com
+# Headless WordPress + Next.js
 # ==========================================
 
-# ----- WordPress Core (DO NOT track) -----
+# ----- WordPress Core (never track) -----
 /wp-admin/
 /wp-includes/
 /wp-*.php
@@ -12,37 +13,24 @@
 /readme.html
 /index.php
 
-# ----- WordPress Plugins (track only custom/essential) -----
-# Ignore all plugins by default
-/wp-content/plugins/*
-# Track our list of plugins (via plugins-list.txt instead)
-!/wp-content/plugins/.gitkeep
-
-# ----- WordPress Themes -----
-# Ignore all themes except our custom ones
+# ----- WordPress Content -----
+# Ignore everything in wp-content except our custom theme
+/wp-content/*
+!/wp-content/themes/
 /wp-content/themes/*
 !/wp-content/themes/headless-iptv/
 
-# ----- WordPress Uploads (too large for git) -----
-/wp-content/uploads/
+# ----- Database Dumps -----
+/backups/*.sql
+/*.sql
 
-# ----- WordPress Cache & Logs -----
-/wp-content/cache/
-/wp-content/debug.log
-/wp-content/advanced-cache.php
-/wp-content/upgrade/
-/wp-content/upgrade-temp-backup/
-/wp-content/wflogs/
-/wp-content/ai1wm-backups/
-/wp-content/backups-dup-pro/
-/wp-content/bps-backup/
-/wp-content/updraft/
-/wp-content/smush-webp/
-/wp-content/wpvivid_staging/
-/wp-content/wpvivid_uploads/
-/wp-content/fonts/
-/wp-content/mu-plugins/
-/wp-content/wp-defender-secrets.php
+# ----- Next.js Frontend -----
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+/frontend/.env.local
+/frontend/.env.production
+/frontend/.vercel/
 
 # ----- Suspicious / Temp Files -----
 /default.php
@@ -56,28 +44,14 @@
 /seraph-accel-img-compr-redir.conf
 /wordfence-waf.php
 
-# ----- Database Dumps -----
-# Keep tracked in /backups/ only
-/*.sql
-/wp-content/uploads/*.sql
-
-# ----- Next.js Frontend -----
-/frontend/node_modules/
-/frontend/.next/
-/frontend/out/
-/frontend/.env.local
-/frontend/.env.production
-/frontend/.vercel/
-
 # ----- OS & Editor -----
 .DS_Store
 Thumbs.db
 *.swp
 *.swo
 *~
-.vscode/
+.vscode/settings.json
 .idea/
-*.log
 
 # ----- Laragon / Local Dev -----
 /.private/

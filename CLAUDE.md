@@ -40,6 +40,11 @@ iptv-nederland.com/
 ├── CLAUDE.md              # This file
 ├── .claude/
 │   └── tasks.md           # Migration task tracker
+├── scripts/
+│   ├── db-backup.bat      # Database backup utility
+│   └── README.md          # Scripts documentation
+├── backups/               # DB dumps (gitignored)
+├── wordpress-inventory.md # Snapshot of current WP state
 ├── frontend/              # Next.js app (created in Milestone 2)
 │   ├── src/
 │   │   ├── app/           # App Router pages
