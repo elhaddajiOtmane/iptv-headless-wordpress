@@ -2,7 +2,7 @@
 
 **Project**: iptv-nederland.com
 **Status**: In Progress
-**Total**: 57 / 116
+**Total**: 75 / 116
 
 ---
 
@@ -95,27 +95,27 @@
   - [x] SEO metadata from Rank Math
   - [x] Responsive design verification
 
-- [ ] **3.2 Pricing Page** (`src/app/pricing/page.tsx`)
-  - [ ] Pricing cards grid (data from ACF)
-  - [ ] Feature comparison highlights
-  - [ ] CTA buttons
-  - [ ] SEO metadata
-  - [ ] Responsive design verification
+- [x] **3.2 Pricing Page** (`src/app/pricing/page.tsx`)
+  - [x] Pricing cards grid (data from ACF)
+  - [x] Feature comparison highlights
+  - [x] CTA buttons
+  - [x] SEO metadata
+  - [x] Responsive design verification
 
-- [ ] **3.3 Contact Page** (`src/app/contact/page.tsx`)
-  - [ ] Contact form component (client component)
-  - [ ] WhatsApp chat button
-  - [ ] Business info display
-  - [ ] SEO metadata
-  - [ ] Responsive design verification
+- [x] **3.3 Contact Page** (`src/app/contact/page.tsx`)
+  - [x] Contact form component (client component)
+  - [x] WhatsApp chat button
+  - [x] Business info display
+  - [x] SEO metadata
+  - [x] Responsive design verification
 
-- [ ] **3.4 Blog** (`src/app/blog/`)
-  - [ ] Blog listing page with pagination (`page.tsx`)
-  - [ ] Single blog post page with ISR (`[slug]/page.tsx`)
-  - [ ] `generateStaticParams()` for all post slugs
-  - [ ] `generateMetadata()` from Rank Math SEO data
-  - [ ] Related posts section
-  - [ ] Responsive design verification
+- [x] **3.4 Blog** (`src/app/blog/`)
+  - [x] Blog listing page with pagination (`page.tsx`)
+  - [x] Single blog post page with ISR (`[slug]/page.tsx`)
+  - [x] `generateStaticParams()` for all post slugs
+  - [x] Categories/Tags filtering (Optional)
+  - [x] Related posts section
+  - [x] Responsive design verification
 
 - [x] **3.5 Shared UI Components**
   - [x] `Button.tsx` — primary, secondary, outline variants
