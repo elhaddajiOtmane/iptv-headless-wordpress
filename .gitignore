@@ -1,0 +1,90 @@
+# ==========================================
+# WordPress + Next.js Headless — .gitignore
+# ==========================================
+
+# ----- WordPress Core (DO NOT track) -----
+/wp-admin/
+/wp-includes/
+/wp-*.php
+!/wp-config.php
+/xmlrpc.php
+/license.txt
+/readme.html
+/index.php
+
+# ----- WordPress Plugins (track only custom/essential) -----
+# Ignore all plugins by default
+/wp-content/plugins/*
+# Track our list of plugins (via plugins-list.txt instead)
+!/wp-content/plugins/.gitkeep
+
+# ----- WordPress Themes -----
+# Ignore all themes except our custom ones
+/wp-content/themes/*
+!/wp-content/themes/headless-iptv/
+
+# ----- WordPress Uploads (too large for git) -----
+/wp-content/uploads/
+
+# ----- WordPress Cache & Logs -----
+/wp-content/cache/
+/wp-content/debug.log
+/wp-content/advanced-cache.php
+/wp-content/upgrade/
+/wp-content/upgrade-temp-backup/
+/wp-content/wflogs/
+/wp-content/ai1wm-backups/
+/wp-content/backups-dup-pro/
+/wp-content/bps-backup/
+/wp-content/updraft/
+/wp-content/smush-webp/
+/wp-content/wpvivid_staging/
+/wp-content/wpvivid_uploads/
+/wp-content/fonts/
+/wp-content/mu-plugins/
+/wp-content/wp-defender-secrets.php
+
+# ----- Suspicious / Temp Files -----
+/default.php
+/sanz.PHP
+/create_autologin_*.php
+/monarx-analyzer.php
+*.bak
+*.bk
+/apeF1xtSc8s25sl21mkGfhL.txt
+/seraphinite-accelerator-*.htaccess
+/seraph-accel-img-compr-redir.conf
+/wordfence-waf.php
+
+# ----- Database Dumps -----
+# Keep tracked in /backups/ only
+/*.sql
+/wp-content/uploads/*.sql
+
+# ----- Next.js Frontend -----
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+/frontend/.env.local
+/frontend/.env.production
+/frontend/.vercel/
+
+# ----- OS & Editor -----
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.log
+
+# ----- Laragon / Local Dev -----
+/.private/
+/.quarantine/
+/.tmb/
+/promo/
+/skills-lock.json
+
+# ----- Agents -----
+/.agents/
