@@ -1,0 +1,13 @@
+/*
+ Theme Name:   Headless IPTV Nederland
+ Theme URI:    https://iptv-nederland.com
+ Description:  Minimal headless WordPress theme. Disables frontend rendering and redirects all public traffic to the Next.js frontend. WordPress is used only as a content management dashboard.
+ Author:       iptv-nederland.com
+ Author URI:   https://iptv-nederland.com
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  headless-iptv
+*/
+
+/* No frontend styles needed — WordPress serves as headless CMS only */

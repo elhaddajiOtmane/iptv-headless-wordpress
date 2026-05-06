@@ -1,8 +1,8 @@
 # Headless WordPress + Next.js Migration — Tasks
 
 **Project**: iptv-nederland.com
-**Status**: Not Started
-**Total**: 0 / 116
+**Status**: In Progress
+**Total**: 57 / 116
 
 ---
 
@@ -10,29 +10,28 @@
 
 > Turn WordPress into a headless content API. No frontend, just dashboard + GraphQL.
 
-- [ ] **1.1 Install Required Plugins**
-  - [ ] Install WPGraphQL
-  - [ ] Install WPGraphQL for ACF
-  - [ ] Install WPGraphQL for Rank Math SEO
-  - [ ] Install WPGraphQL CORS
-  - [ ] Install Advanced Custom Fields (ACF) Pro
-  - [ ] Verify GraphQL endpoint works at `/graphql`
+- [x] **1.1 Install Required Plugins**
+  - [x] Install WPGraphQL
+  - [x] Install WPGraphQL for ACF
+  - [x] Install WPGraphQL for Rank Math SEO
+  - [x] Install WPGraphQL CORS (Skipped: Handling CORS manually in functions.php)
+  - [x] Install Advanced Custom Fields (ACF) Pro (Installed free version temporarily)
+  - [x] Verify GraphQL endpoint works at `/graphql`
 
-- [ ] **1.2 Create Headless Theme**
-  - [ ] Create `wp-content/themes/headless-iptv/` directory
-  - [ ] Write `style.css` (theme header only)
-  - [ ] Write `index.php` (minimal fallback)
-  - [ ] Write `functions.php` (redirect frontend, register menus, disable unnecessary features)
-  - [ ] Activate headless theme in WordPress dashboard
+- [x] **1.2 Create Headless Theme (`headless-iptv`)**
+  - [x] Create `style.css` (minimal requirements)
+  - [x] Create `index.php` (fallback redirect)
+  - [x] Create `functions.php` (GraphQL/CORS settings)
+  - [x] Activate headless theme in WordPress dashboard
 
-- [ ] **1.3 Content Modeling (ACF Field Groups)**
-  - [ ] Homepage Fields: Hero section (title, subtitle, CTA text, CTA URL, background image)
-  - [ ] Homepage Fields: Features list (repeater: icon, title, description)
-  - [ ] Homepage Fields: Testimonials (repeater: name, text, rating)
-  - [ ] Pricing Page Fields: Plans (repeater: name, price, period, features list, CTA, popular flag)
-  - [ ] Contact Page Fields: Business info (address, phone, email, WhatsApp number)
-  - [ ] Global Options: Site logo, social links, footer text
-  - [ ] Register all field groups to show in GraphQL
+- [x] **1.3 Content Modeling (ACF Field Groups)**
+  - [x] Homepage Fields: Hero section (title, subtitle, CTA text, CTA URL, background image)
+  - [x] Homepage Fields: Features list (repeater: icon, title, description)
+  - [x] Homepage Fields: Testimonials (repeater: name, text, rating)
+  - [x] Pricing Page Fields: Plans (repeater: name, price, period, features list, CTA, popular flag)
+  - [x] Contact Page Fields: Business info (address, phone, email, WhatsApp number)
+  - [x] Global Options: Site logo, social links, footer text
+  - [x] Register all field groups to show in GraphQL
 
 - [ ] **1.4 Migrate Content from Elementor → ACF**
   - [ ] Extract homepage content from Elementor and enter into ACF fields
@@ -41,11 +40,11 @@
   - [ ] Migrate existing blog posts (these work as-is with WPGraphQL)
   - [ ] Verify all content is accessible via GraphQL introspection
 
-- [ ] **1.5 WordPress Configuration**
-  - [ ] Update `wp-config.php` with headless constants
-  - [ ] Configure WordPress to allow CORS from Next.js domain
-  - [ ] Set up WordPress navigation menus (Main Nav, Footer Nav)
-  - [ ] Expose menus via WPGraphQL
+- [x] **1.5 WordPress Configuration**
+  - [x] Update `wp-config.php` with headless constants
+  - [x] Configure WordPress to allow CORS from Next.js domain
+  - [x] Set up WordPress navigation menus (Main Nav, Footer Nav)
+  - [x] Expose menus via WPGraphQL
 
 ---
 
@@ -53,34 +52,34 @@
 
 > Bootstrap the Next.js app with TypeScript, App Router, and GraphQL client.
 
-- [ ] **2.1 Initialize Project**
-  - [ ] Run `npx create-next-app@latest` with TypeScript + App Router
-  - [ ] Configure `tsconfig.json` (strict mode)
-  - [ ] Set up `.env.local` with `WORDPRESS_GRAPHQL_URL`
-  - [ ] Configure `next.config.ts` (image domains, rewrites)
+- [x] **2.1 Initialize Project**
+  - [x] Run `npx create-next-app@latest` with TypeScript + App Router
+  - [x] Configure `tsconfig.json` (strict mode)
+  - [x] Set up `.env.local` with `WORDPRESS_GRAPHQL_URL`
+  - [x] Configure `next.config.ts` (image domains, rewrites)
 
-- [ ] **2.2 GraphQL Client Layer**
-  - [ ] Create `src/lib/wordpress.ts` — reusable `fetchGraphQL()` function
-  - [ ] Create `src/lib/types.ts` — TypeScript interfaces for all WP content types
-  - [ ] Create `src/lib/queries/pages.ts` — page queries
-  - [ ] Create `src/lib/queries/posts.ts` — blog post queries
-  - [ ] Create `src/lib/queries/menus.ts` — navigation menu queries
-  - [ ] Create `src/lib/queries/seo.ts` — Rank Math SEO queries
-  - [ ] Test all queries against local WordPress GraphQL endpoint
+- [x] **2.2 GraphQL Client Layer**
+  - [x] Create `src/lib/wordpress.ts` — reusable `fetchGraphQL()` function
+  - [x] Create `src/lib/types.ts` — TypeScript interfaces for all WP content types
+  - [x] Create `src/lib/queries/pages.ts` — page queries
+  - [x] Create `src/lib/queries/posts.ts` — blog post queries
+  - [x] Create `src/lib/queries/menus.ts` — navigation menu queries
+  - [x] Create `src/lib/queries/seo.ts` — Rank Math SEO queries
+  - [x] Test all queries against local WordPress GraphQL endpoint
 
-- [ ] **2.3 Design System & Global Styles**
-  - [ ] Create `src/styles/globals.css` — CSS custom properties (colors, spacing, typography)
-  - [ ] Define dark/premium color palette for IPTV brand
-  - [ ] Set up Google Fonts (Inter or similar)
-  - [ ] Create CSS utility classes and component styles
-  - [ ] Add CSS animations / transitions library
+- [x] **2.3 Design System & Global Styles**
+  - [x] Create `src/styles/globals.css` — CSS custom properties (colors, spacing, typography)
+  - [x] Define dark/premium color palette for IPTV brand
+  - [x] Set up Google Fonts (Inter or similar)
+  - [x] Create CSS utility classes and component styles
+  - [x] Add CSS animations / transitions library
 
-- [ ] **2.4 Layout Components**
-  - [ ] Create `src/app/layout.tsx` — root layout with fonts, metadata, global structure
-  - [ ] Create `src/components/layout/Header.tsx` — navigation from WordPress menus
-  - [ ] Create `src/components/layout/Footer.tsx` — dynamic content from WordPress
-  - [ ] Create `src/components/layout/Navigation.tsx` — responsive nav + mobile menu
-  - [ ] Create `src/app/not-found.tsx` — custom 404 page
+- [x] **2.4 Layout Components**
+  - [x] Create `src/app/layout.tsx` — root layout with fonts, metadata, global structure
+  - [x] Create `src/components/layout/Header.tsx` — navigation from WordPress menus
+  - [x] Create `src/components/layout/Footer.tsx` — dynamic content from WordPress
+  - [x] Create `src/components/layout/Navigation.tsx` — responsive nav + mobile menu
+  - [x] Create `src/app/not-found.tsx` — custom 404 page
 
 ---
 
@@ -88,13 +87,13 @@
 
 > Build each page as a Next.js Server Component consuming WordPress GraphQL data.
 
-- [ ] **3.1 Homepage** (`src/app/page.tsx`)
-  - [ ] Hero section with CTA
-  - [ ] Features grid
-  - [ ] Pricing preview / teaser
-  - [ ] Testimonials carousel
-  - [ ] SEO metadata from Rank Math
-  - [ ] Responsive design verification
+- [x] **3.1 Homepage** (`src/app/page.tsx`)
+  - [x] Hero section with CTA
+  - [x] Features grid
+  - [x] Pricing preview / teaser
+  - [x] Testimonials carousel
+  - [x] SEO metadata from Rank Math
+  - [x] Responsive design verification
 
 - [ ] **3.2 Pricing Page** (`src/app/pricing/page.tsx`)
   - [ ] Pricing cards grid (data from ACF)
@@ -118,13 +117,13 @@
   - [ ] Related posts section
   - [ ] Responsive design verification
 
-- [ ] **3.5 Shared UI Components**
-  - [ ] `Button.tsx` — primary, secondary, outline variants
-  - [ ] `Card.tsx` — reusable content card
-  - [ ] `PricingCard.tsx` — pricing plan card with feature list
-  - [ ] `Hero.tsx` — hero section with background
-  - [ ] `Features.tsx` — feature grid section
-  - [ ] `Testimonials.tsx` — testimonial cards/carousel
+- [x] **3.5 Shared UI Components**
+  - [x] `Button.tsx` — primary, secondary, outline variants
+  - [x] `Card.tsx` — reusable content card
+  - [x] `PricingCard.tsx` — pricing plan card with feature list
+  - [x] `Hero.tsx` — hero section with background
+  - [x] `Features.tsx` — feature grid section
+  - [x] `Testimonials.tsx` — testimonial cards/carousel
 
 ---
 
