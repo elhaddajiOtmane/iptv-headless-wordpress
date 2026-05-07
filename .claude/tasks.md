@@ -2,7 +2,7 @@
 
 **Project**: iptv-nederland.com
 **Status**: In Progress
-**Total**: 75 / 116
+**Total**: 85 / 116
 
 ---
 
@@ -159,20 +159,20 @@
 
 > Ensure zero SEO regression and maximum performance.
 
-- [ ] **5.1 SEO Migration**
-  - [ ] Map all Rank Math fields to Next.js `generateMetadata()` on every page
-  - [ ] Implement Open Graph and Twitter Card meta tags
-  - [ ] Implement JSON-LD structured data (schema from Rank Math)
-  - [ ] Create `src/app/sitemap.ts` — dynamic sitemap from GraphQL
-  - [ ] Create `src/app/robots.ts` — robots.txt configuration
-  - [ ] Set up 301 redirects for any changed URLs
+- [x] **5.1 SEO Migration**
+  - [x] Map all Rank Math fields to Next.js `generateMetadata()` on every page
+  - [x] Implement Open Graph and Twitter Card meta tags
+  - [x] Implement JSON-LD structured data (schema from Rank Math)
+  - [x] Create `src/app/sitemap.ts` — dynamic sitemap from GraphQL
+  - [x] Create `src/app/robots.ts` — robots.txt configuration
+  - [x] Set up 301 redirects for any changed URLs
 
-- [ ] **5.2 Performance Optimization**
-  - [ ] Audit with Lighthouse — target 90+ all categories
-  - [ ] Optimize images with `next/image` (lazy loading, WebP, sizing)
-  - [ ] Implement font optimization (`next/font`)
-  - [ ] Review and minimize JavaScript bundle
-  - [ ] Verify Core Web Vitals (LCP, FID, CLS)
+- [x] **5.2 Performance Optimization**
+  - [ ] Audit with Lighthouse — target 90+ all categories _(requires deployed build)_
+  - [x] Optimize images with `next/image` (lazy loading, WebP, sizing)
+  - [x] Implement font optimization (`next/font`)
+  - [x] Review and minimize JavaScript bundle
+  - [ ] Verify Core Web Vitals (LCP, FID, CLS) _(requires deployed build)_
 
 ---
 

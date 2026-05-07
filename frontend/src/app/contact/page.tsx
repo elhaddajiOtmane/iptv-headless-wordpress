@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { getPageByUri } from "@/lib/queries/pages";
+import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Mail, MapPin, Phone } from "lucide-react";
@@ -10,23 +11,13 @@ export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByUri("/contact");
-
-  if (!page || !page.seo) {
-    return {
-      title: "Contact | IPTV NL",
-      description: "Neem contact met ons op voor al uw vragen over onze IPTV diensten.",
-    };
-  }
-
-  return {
-    title: page.seo.title,
-    description: page.seo.metaDesc,
-    openGraph: {
-      title: page.seo.opengraphTitle,
-      description: page.seo.opengraphDescription,
-      images: page.seo.opengraphImage ? [{ url: page.seo.opengraphImage.sourceUrl }] : [],
-    },
-  };
+  return buildMetadata({
+    seo: page?.seo,
+    fallbackTitle: "Contact",
+    fallbackDescription:
+      "Neem contact met ons op voor al uw vragen over onze IPTV diensten.",
+    path: "/contact",
+  });
 }
 
 export default async function ContactPage() {
@@ -45,6 +36,11 @@ export default async function ContactPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={webPageJsonLd({
+        title: page.seo?.title || "Contact",
+        description: page.seo?.metaDesc || "Neem contact op",
+        path: "/contact",
+      })} />
       <main className="flex-1 py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">

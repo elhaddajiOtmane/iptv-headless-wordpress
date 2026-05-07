@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPosts } from "@/lib/queries/posts";
 import { getPageByUri } from "@/lib/queries/pages";
+import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Card } from "@/components/ui/Card";
 import { Calendar } from "lucide-react";
 
@@ -10,32 +12,26 @@ export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByUri("/blog");
-
-  if (!page || !page.seo) {
-    return {
-      title: "Blog & Nieuws | IPTV NL",
-      description: "Lees het laatste nieuws en artikelen over IPTV, streaming en onze nieuwste features.",
-    };
-  }
-
-  return {
-    title: page.seo.title,
-    description: page.seo.metaDesc,
-    openGraph: {
-      title: page.seo.opengraphTitle,
-      description: page.seo.opengraphDescription,
-      images: page.seo.opengraphImage ? [{ url: page.seo.opengraphImage.sourceUrl }] : [],
-    },
-  };
+  return buildMetadata({
+    seo: page?.seo,
+    fallbackTitle: "Blog & Nieuws",
+    fallbackDescription:
+      "Lees het laatste nieuws en artikelen over IPTV, streaming en onze nieuwste features.",
+    path: "/blog",
+  });
 }
 
 export default async function BlogPage() {
-  // Try to fetch page data for title/description if it exists in WP
   const page = await getPageByUri("/blog");
-  const posts = await getPosts(50); // Fetch up to 50 posts
+  const posts = await getPosts(50);
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={webPageJsonLd({
+        title: page?.seo?.title || "Blog & Nieuws",
+        description: page?.seo?.metaDesc || "IPTV nieuws en artikelen",
+        path: "/blog",
+      })} />
       <main className="flex-1 py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">

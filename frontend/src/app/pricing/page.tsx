@@ -1,29 +1,20 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { getPageByUri } from "@/lib/queries/pages";
+import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PricingCard } from "@/components/ui/PricingCard";
 
-export const revalidate = 60; // ISR revalidation
+export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByUri("/pricing");
-
-  if (!page || !page.seo) {
-    return {
-      title: "Pakketten & Prijzen | IPTV NL",
-      description: "Bekijk onze voordelige IPTV pakketten. Kies het abonnement dat het beste bij u past.",
-    };
-  }
-
-  return {
-    title: page.seo.title,
-    description: page.seo.metaDesc,
-    openGraph: {
-      title: page.seo.opengraphTitle,
-      description: page.seo.opengraphDescription,
-      images: page.seo.opengraphImage ? [{ url: page.seo.opengraphImage.sourceUrl }] : [],
-    },
-  };
+  return buildMetadata({
+    seo: page?.seo,
+    fallbackTitle: "Pakketten & Prijzen",
+    fallbackDescription:
+      "Bekijk onze voordelige IPTV pakketten. Kies het abonnement dat het beste bij u past.",
+    path: "/pricing",
+  });
 }
 
 export default async function PricingPage() {
@@ -42,6 +33,11 @@ export default async function PricingPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={webPageJsonLd({
+        title: page.seo?.title || "Pakketten & Prijzen",
+        description: page.seo?.metaDesc || "IPTV pakketten en prijzen",
+        path: "/pricing",
+      })} />
       <main className="flex-1 py-24">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">

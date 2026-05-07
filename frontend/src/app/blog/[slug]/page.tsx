@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, ChevronLeft } from "lucide-react";
 import { getPostBySlug, getPosts } from "@/lib/queries/posts";
+import { buildMetadata, articleJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
-export const revalidate = 60; // ISR revalidation
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const posts = await getPosts(100);
@@ -14,31 +16,36 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
-    return {
-      title: "Blog Post Niet Gevonden",
-    };
+    return { title: "Blog Post Niet Gevonden" };
   }
 
-  const seo = post.seo;
-  const fallbackDescription = post.excerpt ? post.excerpt.replace(/<[^>]+>/g, '') : "";
+  const fallbackDescription = post.excerpt?.replace(/<[^>]+>/g, "") || "";
 
-  return {
-    title: seo?.title || `${post.title} | IPTV NL Blog`,
-    description: seo?.metaDesc || fallbackDescription,
-    openGraph: {
-      title: seo?.title || post.title,
-      description: seo?.metaDesc || fallbackDescription,
-      images: post.featuredImage?.node ? [{ url: post.featuredImage.node.sourceUrl }] : [],
-    },
-  };
+  return buildMetadata({
+    seo: post.seo,
+    fallbackTitle: `${post.title} | IPTV NL Blog`,
+    fallbackDescription,
+    path: `/blog/${post.slug}`,
+    type: "article",
+    publishedTime: post.date,
+    images: post.featuredImage?.node
+      ? [{ url: post.featuredImage.node.sourceUrl, alt: post.featuredImage.node.altText }]
+      : [],
+  });
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return notFound();
@@ -46,6 +53,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={articleJsonLd(post)} />
       <main className="flex-1 py-12 lg:py-24">
         <article className="container mx-auto px-4 max-w-4xl">
           <div className="mb-8">
