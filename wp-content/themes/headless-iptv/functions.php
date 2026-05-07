@@ -142,3 +142,32 @@ add_filter('preview_post_link', function ($preview_link, $post) use ($headless_f
 
 // ─── Include ACF Fields ─────────────────────────────────────
 require_once get_template_directory() . '/inc/acf-fields.php';
+
+// ─── Revalidation Webhook ──────────────────────────────────────
+add_action('save_post', function ($post_id, $post, $update) use ($headless_frontend_url) {
+    // Skip revisions, autosaves, and non-published posts
+    if (wp_is_post_revision($post_id) || wp_is_post_autosave($post_id) || $post->post_status !== 'publish') {
+        return;
+    }
+
+    $secret = defined('REVALIDATION_SECRET') ? REVALIDATION_SECRET : 'super-secret-revalidation-token';
+
+    $slug = $post->post_name;
+    $post_type = $post->post_type;
+
+    $path = $post_type === 'page' ? "/{$slug}" : "/blog/{$slug}";
+    if ($slug === 'home' || $slug === 'homepage') {
+        $path = '/';
+    }
+
+    $webhook_url = $headless_frontend_url . '/api/revalidate';
+
+    wp_remote_post($webhook_url, [
+        'headers' => [
+            'Content-Type' => 'application/json',
+            'x-revalidate-secret' => $secret
+        ],
+        'body' => wp_json_encode(['path' => $path]),
+        'blocking' => false // Do not wait for response
+    ]);
+}, 10, 3);

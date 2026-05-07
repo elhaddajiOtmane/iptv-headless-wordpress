@@ -35,6 +35,22 @@ export function ContactForm() {
       if (response.ok) {
         setStatus("success");
         (e.target as HTMLFormElement).reset();
+        
+        // Track conversion in GTM
+        if (typeof window !== "undefined") {
+          if (window.gtag) {
+            window.gtag("event", "generate_lead", {
+              event_category: "Contact",
+              event_label: "Contact Form Submit",
+            });
+          }
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: "generate_lead",
+              form_id: "contact_form",
+            });
+          }
+        }
       } else {
         console.error("Form error:", result.error);
         setStatus("error");

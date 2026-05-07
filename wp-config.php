@@ -83,6 +83,7 @@ define( 'DUPLICATOR_AUTH_KEY', 'Uj#,V!C0-~--|58>x{$U,J(u{9FySWzc{)ITl>MX 6Ca/]vG
 define( 'WP_DEBUG_LOG', false );
 define( 'WP_DEBUG_DISPLAY', false );
 define( 'HEADLESS_FRONTEND_URL', 'http://localhost:3000' );
+define( 'REVALIDATION_SECRET', 'super-secret-revalidation-token' );
 /* That's all, stop editing! Happy publishing. */
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {

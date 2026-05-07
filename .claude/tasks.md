@@ -131,27 +131,27 @@
 
 > Connect forms, tracking, and real-time content updates.
 
-- [ ] **4.1 Contact Form**
-  - [ ] Build `ContactForm.tsx` client component with validation
-  - [ ] Create `/api/contact/route.ts` — proxy to WordPress CF7 REST endpoint
-  - [ ] Add success/error states and loading indicator
-  - [ ] Wire up FluentCRM tagging on form submission (WordPress side)
-  - [ ] Test end-to-end form submission
+- [x] **4.1 Contact Form**
+  - [x] Build `ContactForm.tsx` client component with validation
+  - [x] Create `/api/contact/route.ts` — proxy to WordPress CF7 REST endpoint
+  - [x] Add success/error states and loading indicator
+  - [x] Wire up FluentCRM tagging on form submission (WordPress side)
+  - [x] Test end-to-end form submission
 
-- [ ] **4.2 WhatsApp Chat**
-  - [ ] Create `WhatsAppButton.tsx` — floating chat widget
-  - [ ] Pull WhatsApp number from WordPress (ACF global options)
-  - [ ] Add click tracking event
+- [x] **4.2 WhatsApp Chat**
+  - [x] Create `WhatsAppButton.tsx` — floating chat widget
+  - [x] Pull WhatsApp number from WordPress (ACF global options)
+  - [x] Add click tracking event
 
-- [ ] **4.3 Google Ads / Analytics**
-  - [ ] Set up Google Tag Manager via `next/script`
-  - [ ] Migrate conversion tracking from WooCommerce plugin to GTM
-  - [ ] Verify conversion events fire correctly
+- [x] **4.3 Google Ads / Analytics**
+  - [x] Set up Google Tag Manager via `next/third-parties`
+  - [x] Migrate conversion tracking from WooCommerce plugin to GTM
+  - [x] Verify conversion events fire correctly
 
-- [ ] **4.4 On-Demand ISR (Revalidation Webhook)**
-  - [ ] Create `/api/revalidate/route.ts` with secret token validation
-  - [ ] Configure WordPress to POST to Vercel on content update
-  - [ ] Test: update content in WP → verify frontend updates within seconds
+- [x] **4.4 On-Demand ISR (Revalidation Webhook)**
+  - [x] Create `/api/revalidate/route.ts` with secret token validation
+  - [x] Configure WordPress to POST to Vercel on content update
+  - [x] Test: update content in WP → verify frontend updates within seconds
 
 ---
 
