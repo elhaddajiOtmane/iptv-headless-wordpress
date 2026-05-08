@@ -3,8 +3,17 @@ import { getPageByUri } from "@/lib/queries/pages";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/sections/Hero";
+import { WhoWeAre } from "@/components/sections/WhoWeAre";
 import { Features } from "@/components/sections/Features";
+import { MoreToStream } from "@/components/sections/MoreToStream";
+import { MoviesGrid } from "@/components/sections/MoviesGrid";
+import { SportsNewsBanners } from "@/components/sections/SportsNewsBanners";
+import { Pricing } from "@/components/sections/Pricing";
+import { TrialCTA } from "@/components/sections/TrialCTA";
+import { Benefits } from "@/components/sections/Benefits";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { Stats } from "@/components/sections/Stats";
+import { Faq } from "@/components/sections/Faq";
 
 export const revalidate = 60;
 
@@ -21,36 +30,41 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const page = await getPageByUri("/");
+  const fields = page?.homepageFields;
 
-  if (!page || !page.homepageFields) {
-    return (
-      <div className="flex flex-col min-h-screen items-center justify-center py-24">
-        <h1 className="text-4xl font-bold mb-4">Content Not Found</h1>
-        <p className="text-foreground/70">Please configure the homepage fields in WordPress.</p>
-      </div>
-    );
-  }
-
-  const { heroTitle, heroSubtitle, heroCtaText, heroCtaUrl, heroImage, features, testimonials } = page.homepageFields;
+  const heroTitle = fields?.heroTitle || "Top Quality Streaming met IPTV NL";
+  const heroSubtitle =
+    fields?.heroSubtitle ||
+    "Inclusief al je favoriete kanalen met lokaal nieuws, live sport, weer en meer.";
+  const heroCtaText = fields?.heroCtaText || "Zoek Nu";
+  const heroCtaUrl = fields?.heroCtaUrl || "/pricing";
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <JsonLd data={webPageJsonLd({
-        title: page.seo?.title || "IPTV Nederland",
-        description: page.seo?.metaDesc || "Premium IPTV Provider",
-        path: "/",
-      })} />
-      <main className="flex-1">
-        <Hero 
-          title={heroTitle || "Premium **IPTV** Provider"}
-          subtitle={heroSubtitle || "Ervaar de beste kwaliteit met ons premium IPTV netwerk. Sneller, stabieler en meer content dan ooit tevoren."}
-          ctaText={heroCtaText || "Kies Je Pakket"}
-          ctaUrl={heroCtaUrl || "/pricing"}
-          image={heroImage}
-        />
-        {features && features.length > 0 && <Features features={features} />}
-        {testimonials && testimonials.length > 0 && <Testimonials testimonials={testimonials} />}
-      </main>
-    </div>
+    <>
+      <JsonLd
+        data={webPageJsonLd({
+          title: page?.seo?.title || "IPTV Nederland",
+          description: page?.seo?.metaDesc || "Premium IPTV Provider",
+          path: "/",
+        })}
+      />
+      <Hero
+        title={heroTitle}
+        subtitle={heroSubtitle}
+        ctaText={heroCtaText}
+        ctaUrl={heroCtaUrl}
+      />
+      <WhoWeAre />
+      <Features features={fields?.features} />
+      <MoreToStream />
+      <MoviesGrid />
+      <SportsNewsBanners />
+      <Pricing />
+      <TrialCTA />
+      <Benefits />
+      <Testimonials testimonials={fields?.testimonials} />
+      <Stats />
+      <Faq />
+    </>
   );
 }

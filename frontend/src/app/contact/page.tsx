@@ -20,32 +20,30 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
+const fallbackContact = {
+  emailAddress: "info@iptv-nederland.com",
+  whatsappNumber: "+31000000000",
+  physicalAddress: "Nederland",
+};
+
 export default async function ContactPage() {
   const page = await getPageByUri("/contact");
-
-  if (!page || !page.contactFields) {
-    return (
-      <div className="flex flex-col min-h-screen items-center justify-center py-24">
-        <h1 className="text-4xl font-bold mb-4">Content Not Found</h1>
-        <p className="text-foreground/70">Please configure the contact fields in WordPress for the `/contact` page.</p>
-      </div>
-    );
-  }
-
-  const { emailAddress, whatsappNumber, physicalAddress } = page.contactFields;
+  const { emailAddress, whatsappNumber, physicalAddress } =
+    page?.contactFields ?? fallbackContact;
 
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={webPageJsonLd({
-        title: page.seo?.title || "Contact",
-        description: page.seo?.metaDesc || "Neem contact op",
+        title: page?.seo?.title || "Contact",
+        description: page?.seo?.metaDesc || "Neem contact op",
         path: "/contact",
       })} />
-      <main className="flex-1 py-24">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Neem <span className="text-gradient">Contact</span> Op
+      <main className="flex-1 bg-ink py-20 lg:py-28">
+        <div className="container-x max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="eyebrow justify-center inline-flex">Contact</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+              Neem <span className="text-primary-500">contact</span> op
             </h1>
             <p className="text-lg text-foreground/70">
               Heb je een vraag over onze pakketten, installatie of iets anders? Ons support team staat 7 dagen per week voor je klaar.

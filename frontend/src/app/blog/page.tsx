@@ -32,10 +32,11 @@ export default async function BlogPage() {
         description: page?.seo?.metaDesc || "IPTV nieuws en artikelen",
         path: "/blog",
       })} />
-      <main className="flex-1 py-24">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+      <main className="flex-1 bg-ink py-20 lg:py-28">
+        <div className="container-x max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="eyebrow justify-center inline-flex">Blog</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
               {page?.title || "Blog & Nieuws"}
             </h1>
             <p className="text-lg text-foreground/70">

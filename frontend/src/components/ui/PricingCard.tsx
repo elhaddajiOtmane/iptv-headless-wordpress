@@ -1,6 +1,5 @@
+import Link from "next/link";
 import { Check } from "lucide-react";
-import { Card } from "./Card";
-import { Button } from "./Button";
 
 interface PricingCardProps {
   name: string;
@@ -22,43 +21,66 @@ export function PricingCard({
   const features = featuresList.split("\n").filter(Boolean);
 
   return (
-    <Card 
-      variant={isPopular ? "glass" : "bordered"} 
-      className={`relative flex flex-col h-full ${isPopular ? 'border-primary-500/50 scale-105 z-10' : ''}`}
+    <div
+      className={`relative rounded-xl p-8 transition-all flex flex-col h-full ${
+        isPopular
+          ? "bg-primary-500 text-white shadow-2xl shadow-primary-500/30 lg:-translate-y-4"
+          : "bg-surface border border-surface-border hover:border-primary-500/50"
+      }`}
     >
       {isPopular && (
-        <div className="absolute -top-4 left-0 right-0 flex justify-center">
-          <span className="bg-gradient-to-r from-primary-400 to-accent text-white text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full">
-            Meest Gekozen
-          </span>
-        </div>
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-primary-500 text-[11px] font-bold uppercase tracking-wider py-1 px-4 rounded-full">
+          Meest Gekozen
+        </span>
       )}
 
-      <div className="text-center mb-8">
-        <h3 className="text-xl font-heading font-semibold text-foreground/80 mb-2">{name}</h3>
+      <div className="img-placeholder w-20 h-20 rounded-full mb-6 mx-auto" />
+
+      <div className="text-center space-y-2 mb-6">
+        <span
+          className={`text-xs uppercase tracking-[0.2em] font-semibold ${
+            isPopular ? "text-white/80" : "text-primary-500"
+          }`}
+        >
+          {name}
+        </span>
         <div className="flex items-baseline justify-center gap-1">
-          <span className="text-4xl font-heading font-bold text-foreground">€{price}</span>
-          <span className="text-foreground/50">/{period}</span>
+          <span className="text-5xl font-extrabold">€{price}</span>
+          <span className={isPopular ? "text-white/70" : "text-foreground/50"}>
+            /{period}
+          </span>
         </div>
       </div>
 
-      <ul className="space-y-4 mb-8 flex-1">
-        {features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-3 text-foreground/80">
-            <Check className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-            <span className="text-sm">{feature.trim()}</span>
+      <ul className="space-y-3 mb-8 flex-1">
+        {features.map((f, i) => (
+          <li
+            key={i}
+            className={`flex items-start gap-3 text-sm ${
+              isPopular ? "text-white/90" : "text-foreground/80"
+            }`}
+          >
+            <Check
+              className={`w-4 h-4 mt-0.5 shrink-0 ${
+                isPopular ? "text-white" : "text-primary-500"
+              }`}
+              strokeWidth={3}
+            />
+            {f.trim()}
           </li>
         ))}
       </ul>
 
-      <Button
+      <Link
         href={ctaUrl}
-        variant={isPopular ? "primary" : "secondary"}
-        size="lg"
-        className="w-full"
+        className={`flex items-center justify-center w-full py-3.5 rounded-md font-semibold transition-colors ${
+          isPopular
+            ? "bg-white text-primary-500 hover:bg-foreground/90"
+            : "bg-primary-500 text-white hover:bg-primary-400"
+        }`}
       >
         Bestel Nu
-      </Button>
-    </Card>
+      </Link>
+    </div>
   );
 }
