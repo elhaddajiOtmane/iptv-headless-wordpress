@@ -33,7 +33,7 @@ export interface HomepageFields {
   heroSubtitle: string;
   heroCtaText: string;
   heroCtaUrl: string;
-  heroImage: WPImage;
+  heroImage: { node: WPImage };
   features: {
     title: string;
     description: string;

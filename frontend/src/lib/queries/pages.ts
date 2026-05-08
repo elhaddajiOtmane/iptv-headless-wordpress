@@ -30,11 +30,13 @@ export async function getPageByUri(uri: string): Promise<WpPage | null> {
           heroCtaText
           heroCtaUrl
           heroImage {
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
+            node {
+              sourceUrl
+              altText
+              mediaDetails {
+                width
+                height
+              }
             }
           }
           features {

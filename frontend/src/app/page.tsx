@@ -46,7 +46,7 @@ export default async function Home() {
           subtitle={heroSubtitle || "Ervaar de beste kwaliteit met ons premium IPTV netwerk. Sneller, stabieler en meer content dan ooit tevoren."}
           ctaText={heroCtaText || "Kies Je Pakket"}
           ctaUrl={heroCtaUrl || "/pricing"}
-          image={heroImage}
+          image={heroImage?.node}
         />
         {features && features.length > 0 && <Features features={features} />}
         {testimonials && testimonials.length > 0 && <Testimonials testimonials={testimonials} />}

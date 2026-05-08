@@ -200,9 +200,9 @@ add_action('acf/init', function() {
         'location' => [
             [
                 [
-                    'param' => 'page_template',
+                    'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'template-home.php',
+                    'value' => 'page',
                 ]
             ]
         ],
@@ -274,9 +274,9 @@ add_action('acf/init', function() {
         'location' => [
             [
                 [
-                    'param' => 'page_template',
+                    'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'template-pricing.php',
+                    'value' => 'page',
                 ]
             ]
         ],
@@ -316,9 +316,9 @@ add_action('acf/init', function() {
         'location' => [
             [
                 [
-                    'param' => 'page_template',
+                    'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'template-contact.php',
+                    'value' => 'page',
                 ]
             ]
         ],
