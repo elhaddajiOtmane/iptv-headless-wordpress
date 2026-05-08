@@ -61,4 +61,12 @@ Thumbs.db
 /skills-lock.json
 
 # ----- Agents -----
-/.agents/
+/.claude/
+# But keep these subdirs tracked
+!.claude/skills/
+!.claude/tasks.md
+!.claude/commands/
+
+# Exclude these from .claude
+/.claude/worktrees/
+/.claude/write-a-skill/
